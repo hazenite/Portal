@@ -14,8 +14,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Route exact path = "/" component = { ListOfPosts } />
-        <Route path = "/navbar" component = { NavBar } />
+        <Route exact path = "/" component = { NavBar } />
+        <Route path = "/ListOfPosts" component = { ListOfPosts } />
         <Route path='/EditForm/:id' component = { EditForm } />
         <Route path='/CreatePost' component={ CreatePost } />
         <Route path='/SignUp' component={ SignUp } />

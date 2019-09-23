@@ -49,15 +49,15 @@ export class CreatePost extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              ADD posty
-            </h3>
+              Dodaj Posty
+              </h3>
           </div>
           <div class="panel-body">
             <h4><Link to="/" class="btn btn-primary">Lista postów</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="tytul">tytul:</label>
-                <textArea class="form-control" name="tytul" onChange={this.onChange} placeholder="tytul"> {tytul} </textArea>
+                <textArea class="form-control" name="tytul" onChange={this.onChange}> {tytul} </textArea>
               </div>
               <div class="form-group">
                 <label for="tresc">tresc:</label>
@@ -65,7 +65,7 @@ export class CreatePost extends Component {
               </div>
               <div class="form-group">
                 <label for="autor">autor:</label>
-                <textArea class="form-control" name="autor" onChange={this.onChange} placeholder="autor"> {autor} </textArea>
+                <textArea class="form-control" name="autor" onChange={this.onChange}> {autor} </textArea>
               </div>
               <button type="submit" class="btn btn-success">Submit</button>
             </form>

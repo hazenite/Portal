@@ -36,8 +36,8 @@ export class ListOfPosts extends Component {
   }
     render() {
         return (
+          <div> 
             <div class="container">  
-
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
@@ -45,10 +45,6 @@ export class ListOfPosts extends Component {
                 </h3>
               </div>
               <div class="panel-body">
-                <h4><Link to="/CreatePost">Dodaj</Link></h4>
-                <h4><Link to="/SignUp">Zarejestruj sie</Link></h4>
-                <button onClick={signOut}>Sign out</button>
-
                 <table class="table table-stripe">
                   <thead>
                     <tr>
@@ -69,6 +65,7 @@ export class ListOfPosts extends Component {
                 </table>
               </div>
             </div>
+          </div>
           </div>
         )
     }

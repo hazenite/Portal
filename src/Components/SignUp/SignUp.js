@@ -3,7 +3,8 @@ import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseApp from '../../Firebase';
-import { Route, Redirect } from "react-router"
+import { Redirect } from "react-router"
+
 
 export class SignUp extends Component {
     render() {
@@ -24,8 +25,8 @@ export class SignUp extends Component {
     
               {
                 user
-                  ? <button onClick={signOut}>Sign out</button>
-                  : <button onClick={signInWithGoogle}>Sign in with Google</button>
+                  ? <button onClick={signOut}>Wyloguj </button>
+                  : <button onClick={signInWithGoogle}>Zarejestruj sie z Google</button>
               }
             </header>
           </div>
