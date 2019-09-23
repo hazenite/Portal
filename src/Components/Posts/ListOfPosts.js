@@ -51,7 +51,7 @@ export class ListOfPosts extends Component {
     render() {
         return (
           <div> 
-            <div class="container">  
+            <div class="container">          
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
@@ -83,6 +83,8 @@ export class ListOfPosts extends Component {
             </div>          
             <Button variant="outline-dark" onClick={this.logout}> Wyloguj sie</Button>
             <Button variant="outline-dark" onClick={this.delete}> Skasuj konto </Button>
+            <Link to="/CreatePost" class="btn btn-primary">Dodaj Post</Link>
+
 
           </div>
           </div>                
