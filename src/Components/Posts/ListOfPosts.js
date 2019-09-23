@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import firebase from './../../Firebase';
-
+import { Table, Button } from 'react-bootstrap';
 
 export class ListOfPosts extends Component {
     constructor(props) {
@@ -30,10 +30,24 @@ export class ListOfPosts extends Component {
            });
           }   
 
-          
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-  }
+    componentDidMount() {
+      this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+    }
+
+    logout = () => {
+      firebase.auth().signOut().then(function() {
+        console.log('Signed Out');
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
+      }
+
+    delete = () => {
+      var user = firebase.auth().currentUser;
+      user.delete();
+    }
+
+
     render() {
         return (
           <div> 
@@ -45,7 +59,7 @@ export class ListOfPosts extends Component {
                 </h3>
               </div>
               <div class="panel-body">
-                <table class="table table-stripe">
+                <Table striped bordered hover>
                   <thead>
                     <tr>
                       <th>tytuł</th>
@@ -57,16 +71,23 @@ export class ListOfPosts extends Component {
                     {this.state.posty.map(posty =>
                       <tr>
                         <td><Link to={`/ShowPosts/${posty.key}`}>{posty.tytul}</Link></td>
+
                         <td>{posty.tresc}</td>
                         <td>{posty.autor}</td>
+
                       </tr>
                     )}
                   </tbody>
-                </table>
+                </Table>
               </div>
-            </div>
+            </div>          
+            <Button variant="outline-dark" onClick={this.logout}> Wyloguj sie</Button>
+            <Button variant="outline-dark" onClick={this.delete}> Skasuj konto </Button>
+
           </div>
-          </div>
+          </div>                
+        
+
         )
     }
 }

@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import EditForm from './Components/Posts/EditForm';
 import ListOfPosts from './Components/Posts/ListOfPosts';
 import SignUp from './Components/SignUp/SignUp';
+import LoginUp from './Components/SignUp/LoginUp';
 
 
 
@@ -14,11 +15,15 @@ function App() {
   return (
     <Router>
       <div>
-        <Route exact path = "/" component = { NavBar } />
+        <Route exact path = "/" component = { SignUp } />
         <Route path = "/ListOfPosts" component = { ListOfPosts } />
         <Route path='/EditForm/:id' component = { EditForm } />
         <Route path='/CreatePost' component={ CreatePost } />
-        <Route path='/SignUp' component={ SignUp } />
+        {/* <Route path='/SignUp' component={ SignUp } /> */}
+        <Route path='/LoginUp' component={ LoginUp } />
+        <Route path='/NavBar' component={ NavBar } />
+
+
 
 
    </div>

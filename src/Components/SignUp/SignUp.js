@@ -1,46 +1,45 @@
 import React, { Component } from 'react';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseApp from '../../Firebase';
-import { Redirect } from "react-router"
-
+import firebase from './../../Firebase';
+import LoginUp from '../SignUp/LoginUp';
+import ListOfPosts from '../Posts/ListOfPosts';
 
 export class SignUp extends Component {
-    render() {
-        const {
-            user,
-            signOut,
-            signInWithGoogle,
-          } = this.props;
-      
-        return (
-            <div className="App">
-            <header className="App-header">
-              {
-                user
-                  ?  <Redirect to="/" /> 
-                  : <p>Please sign in.</p>
-              }
-    
-              {
-                user
-                  ? <button onClick={signOut}>Wyloguj </button>
-                  : <button onClick={signInWithGoogle}>Zarejestruj sie z Google</button>
-              }
-            </header>
-          </div>
-        )
+  constructor(){
+    super();
+    this.state = {
+      user: null,
+      loading: true
     }
+  }
+
+  componentDidMount(){
+    this.authListener();
+    setTimeout(function() {
+      this.setState({
+        loading: false
+      });
+    }.bind(this), 1000);
+  }
+
+  authListener(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        this.setState({user});
+      }else{
+        this.setState({user:null});
+      }
+    });
+  }
+
+  render(){
+    if (this.state.loading){
+        return <p>Ładowanie komponentu..</p>;
+    }
+    return (
+        <div>
+          {this.state.user ? (<ListOfPosts />) : (<LoginUp />)}
+        </div>
+    );
+  }
 }
-
-const firebaseAppAuth = firebaseApp.auth();
-
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
-
-export default withFirebaseAuth({
-    providers,
-    firebaseAppAuth,
-  })(SignUp);
+export default SignUp

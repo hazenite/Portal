@@ -8,25 +8,27 @@ export class CreatePost extends Component {
     super();
     this.ref = firebase.firestore().collection('posty');
     this.state = {
-      title: '',
-      description: '',
-      author: ''
+      tytul: '',
+      tresc: '',
+      autor: ''
     };
   }
+
   onChange = (e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
+
   onSubmit = (e) => {
     e.preventDefault();
-
-    const { tytul, tresc, autor } = this.state;
-
+    const { tytul, tresc } = this.state;
+    var user = firebase.auth().currentUser;
+    console.log(user.email);
     this.ref.add({
       tytul,
       tresc,
-      autor
+      autor: user.email,
     }).then((docRef) => {
       this.setState({
         tytul: '',
@@ -36,13 +38,13 @@ export class CreatePost extends Component {
       this.props.history.push("/")
     })
     .catch((error) => {
-      console.error("Error adding document: ", error);
+      console.error("Bład: ", error);
     });
   }
 
 
   render() {
-    const { tytul, tresc, autor } = this.state;
+    const { tytul, tresc } = this.state;
     
     return (
       <div class="container">
@@ -56,18 +58,15 @@ export class CreatePost extends Component {
             <h4><Link to="/" class="btn btn-primary">Lista postów</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
-                <label for="tytul">tytul:</label>
+                <label for="tytul">Tytuł:</label>
                 <textArea class="form-control" name="tytul" onChange={this.onChange}> {tytul} </textArea>
               </div>
               <div class="form-group">
-                <label for="tresc">tresc:</label>
+                <label for="tresc">Treść:</label>
                 <textArea class="form-control" name="tresc" onChange={this.onChange} placeholder="tresc" cols="80" rows="3">{tresc}</textArea>
               </div>
-              <div class="form-group">
-                <label for="autor">autor:</label>
-                <textArea class="form-control" name="autor" onChange={this.onChange}> {autor} </textArea>
-              </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+
+              <button type="submit" class="btn btn-success">Dodaj Post</button>
             </form>
           </div>
         </div>
