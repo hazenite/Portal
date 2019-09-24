@@ -4,7 +4,6 @@ export class Dashboard extends Component {
     render() {
         return (
 <div>
-<Navbar></Navbar>
 
 </div>
            )

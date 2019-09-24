@@ -35,7 +35,7 @@ export class CreatePost extends Component {
         tresc: '',
         autor: ''
       });
-      this.props.history.push("/")
+      this.props.history.push("/ListOfPosts")
     })
     .catch((error) => {
       console.error("Bład: ", error);
@@ -45,7 +45,7 @@ export class CreatePost extends Component {
 
   render() {
     const { tytul, tresc } = this.state;
-    
+
     return (
       <div class="container">
         <div class="panel panel-default">
@@ -55,7 +55,7 @@ export class CreatePost extends Component {
               </h3>
           </div>
           <div class="panel-body">
-            <h4><Link to="/" class="btn btn-primary">Lista postów</Link></h4>
+            <h4><Link to="/ListOfPosts" class="btn btn-primary">Lista postów</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="tytul">Tytuł:</label>
@@ -63,7 +63,7 @@ export class CreatePost extends Component {
               </div>
               <div class="form-group">
                 <label for="tresc">Treść:</label>
-                <textArea class="form-control" name="tresc" onChange={this.onChange} placeholder="tresc" cols="80" rows="3">{tresc}</textArea>
+                <textArea class="form-control" name="tresc" onChange={this.onChange} placeholder="tresc" cols="80" rows="3"> {tresc} </textArea>
               </div>
 
               <button type="submit" class="btn btn-success">Dodaj Post</button>

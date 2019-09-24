@@ -19,7 +19,7 @@ export class ListOfPosts extends Component {
               const { tytul, autor, tresc } = doc.data();
               posty.push({
                 key: doc.id,
-                doc, 
+                doc,
                 tresc,
                 tytul,
                 autor,
@@ -28,7 +28,7 @@ export class ListOfPosts extends Component {
             this.setState({
               posty
            });
-          }   
+          }
 
     componentDidMount() {
       this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
@@ -50,12 +50,12 @@ export class ListOfPosts extends Component {
 
     render() {
         return (
-          <div> 
-            <div class="container">          
+          <div>
+            <div class="container">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                     Lista Postów 
+                     Lista Postów
                 </h3>
               </div>
               <div class="panel-body">
@@ -80,15 +80,13 @@ export class ListOfPosts extends Component {
                   </tbody>
                 </Table>
               </div>
-            </div>          
+            </div>
             <Button variant="outline-dark" onClick={this.logout}> Wyloguj sie</Button>
             <Button variant="outline-dark" onClick={this.delete}> Skasuj konto </Button>
             <Link to="/CreatePost" class="btn btn-primary">Dodaj Post</Link>
-
-
           </div>
-          </div>                
-        
+          </div>
+
 
         )
     }
